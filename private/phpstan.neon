@@ -1,0 +1,8 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+parameters:
+    level: 5
+    ignoreErrors:
+        - '#Call to an undefined (static |)method App\\Models\\Entities\\[a-zA-Z0-9\\_]+::(rebuildTree|withDepth)\(\).#'
+    excludes_analyse:
+        - /*/*/FileToBeExcluded.php

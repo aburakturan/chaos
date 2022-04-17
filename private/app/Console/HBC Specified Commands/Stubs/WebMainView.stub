@@ -1,0 +1,21 @@
+@extends('web.template.layout', [
+    'headerClass' => 'header--shrink'
+])
+@section('content')
+    <div class="header-overflow"></div>
+
+   @foreach($$$Dummy_Model_Name_Lower$$s as $$$Dummy_Model_Name_Lower$$)
+       <a href="{{$$$Dummy_Model_Name_Lower$$->getViewLink()}}">
+           {{$$$Dummy_Model_Name_Lower$$->getTitle()}}<br>
+
+           @if ($$$Dummy_Model_Name_Lower$$->hasImage('image'))
+            <img src="{{ $$$Dummy_Model_Name_Lower$$->getImageByTemplate('medium_featured','image') }}" alt="">
+           @endif
+
+           @if ($$$Dummy_Model_Name_Lower$$->hasImage('image_manset'))
+            <img src="{{ $$$Dummy_Model_Name_Lower$$->getImageByTemplate('featured_manset','image_manset') }}" alt="">
+           @endif
+
+       </a>
+   @endforeach
+@endsection

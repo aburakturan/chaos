@@ -1,0 +1,200 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Models\Entities\Page;
+use App\Models\Entities\$$Dummy_Model_Name_Upper$$;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+
+class $$Dummy_Model_Name_Upper$$Controller extends AdminController
+{
+
+    protected $pageMeta = [
+        'title' => '$$Dummy_Model_Name_Upper$$s',
+        'desc' => 'Ekle, düzenle, kategorile, sırala, sil',
+    ];
+
+    protected $modelMeta = [
+        'name' => '$$Dummy_Model_Name_Lower$$',
+        'singularTitle' => '$$Dummy_Model_Name_Upper$$',
+        'pluralTitle' => '$$Dummy_Model_Name_Upper$$s',
+        'deleteTitle' => '$$Dummy_Model_Name_Upper$$',
+    ];
+
+
+    public function process($request, $type, $id = null)
+    {
+        if ($type == 'store') {
+            $row = new $$Dummy_Model_Name_Upper$$;
+        } else {
+            $row = $$Dummy_Model_Name_Upper$$::withTrashed()->findOrFail($id);
+        }
+
+        // Update
+        if ($request->created_at) {
+            $row->created_at = $request->created_at;
+        }
+
+        if ($type == 'store') {
+            $row->save();
+
+            $otherRows = $$Dummy_Model_Name_Upper$$::where('id', '<>', $row->id)->defaultOrder()->get();
+            if (!is_null($otherRows)) {
+                $firstRow = $otherRows->first();
+                if (!is_null($firstRow)) {
+                    $row->insertBeforeNode($firstRow);
+                }
+            }
+        } else {
+            $row->update();
+        }
+
+        // Set Images
+        if ($row->imageAttributes) {
+            foreach ($row->imageAttributes as $imageKey => $imageAttributes) {
+                $row->setImage($request, $imageKey);
+            }
+        }
+
+        // Translates
+        foreach (config('app.locales') as $locale => $localeMeta) {
+            $row->{'title:' . $locale} = $request->{'title_' . $locale};
+            $row->{'excerpt:' . $locale} = $request->{'excerpt_' . $locale};
+            $row->{'content:' . $locale} = $request->{'content_' . $locale};
+
+            $row->{'meta_title:' . $locale} = $request->{'meta_title_' . $locale};
+            $row->{'meta_description:' . $locale} = $request->{'meta_description_' . $locale};
+
+            // Slug
+            $slug = $row->generateSlug($request->{'title_' . $locale}, $locale);
+            $forceSlug = $request->{'force_slug_' . $locale};
+
+            $row->{'slug:' . $locale} = $slug;
+
+            if ($forceSlug) {
+                if ($forceSlug != $slug) {
+                    $row->{'slug:' . $locale} = $forceSlug;
+                    $row->{'force_slug:' . $locale} = $forceSlug;
+                } else {
+                    $row->{'force_slug:' . $locale} = null;
+                }
+            }
+
+            $row->update();
+        }
+
+        // Set status
+        $this->generateFlashMessagePage($type);
+
+        // Cache Flush
+        $this->cacheFlush();
+
+        if ($type == 'store') {
+            $redirect = redirect()->route('admin.' . $this->modelMeta['name'] . '.edit', ['id' => $row->id]);
+        } else {
+            $redirect = redirect()->back();
+        }
+
+        return $redirect;
+    }
+
+    public function index($rows = null)
+    {
+        $rows = $$Dummy_Model_Name_Upper$$::withDepth()->defaultOrder()->get();
+
+        return parent::index($rows);
+    }
+
+    public function sort($rows = null)
+    {
+        $rows = $$Dummy_Model_Name_Upper$$::withDepth()->defaultOrder()->get()->toTree();
+
+        return parent::sort($rows);
+    }
+
+    public function rebuildTree(Request $request)
+    {
+        $nestedSet = json_decode($request->nestable_list, true);
+
+        $$Dummy_Model_Name_Upper$$::rebuildTree($nestedSet);
+
+        $this->generateFlashMessage('success', 'Sıralamalar ve alt öğeler güncellendi!');
+
+        return redirect()->route('admin.'.$this->modelMeta['name'].'.sort');
+    }
+
+    public function trash($rows = null)
+    {
+        $rows = $$Dummy_Model_Name_Upper$$::onlyTrashed()->withDepth()->defaultOrder()->get();
+
+        return parent::trash($rows);
+    }
+
+    public function create($row = null)
+    {
+        $row = new $$Dummy_Model_Name_Upper$$;
+
+        return parent::create($row);
+    }
+
+    public function store(Request $request)
+    {
+        return $this->process($request, 'store');
+    }
+
+    public function edit($id)
+    {
+        $row = $$Dummy_Model_Name_Upper$$::withTrashed()->findOrFail($id);
+
+        return parent::edit($row);
+    }
+
+    public function update(Request $request, $id)
+    {
+        return $this->process($request, 'update', $id);
+    }
+
+    public function deleteConfirmation($id)
+    {
+        $row = $$Dummy_Model_Name_Upper$$::findOrFail($id);
+
+        return parent::deleteConfirmation($row);
+    }
+
+    public function destroy($id)
+    {
+        $row = $$Dummy_Model_Name_Upper$$::findOrFail($id);
+
+        return parent::destroy($row);
+    }
+
+    public function hardDeleteConfirmation($id)
+    {
+        $row = $$Dummy_Model_Name_Upper$$::withTrashed()->findOrFail($id);
+
+        return parent::hardDeleteConfirmation($row);
+    }
+
+    public function hardDelete($id)
+    {
+        $row = $$Dummy_Model_Name_Upper$$::withTrashed()->findOrFail($id);
+
+        return parent::hardDelete($row);
+    }
+
+    public function restoreConfirmation($id)
+    {
+        $row = $$Dummy_Model_Name_Upper$$::withTrashed()->findOrFail($id);
+
+        return parent::restoreConfirmation($row);
+    }
+
+    public function restore($id)
+    {
+        $row = $$Dummy_Model_Name_Upper$$::withTrashed()->findOrFail($id);
+
+        return parent::restore($row);
+    }
+}

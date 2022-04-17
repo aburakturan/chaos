@@ -1,0 +1,90 @@
+$fontFamilyMain: Montserrat, sans-serif;
+$colorMain: #1a2c5e;
+
+// Bootstrap
+$body-color: $colorMain;
+
+$headings-font-weight: 'inherit';
+
+$input-btn-padding-y: .9rem;
+
+$theme-colors: (
+    'main': $colorMain,
+    'black': #000,
+    'white': #fff,
+);
+
+$spacer: 1rem;
+$spacers: (
+    // n12: -($spacer * 3),
+    0: 0,
+    1: ($spacer * 0.25),
+    2: ($spacer * 0.5),
+    // 2\.5: ($spacer * 0.625),
+    3: ($spacer * 0.75),
+    4: ($spacer * 1),
+    5: ($spacer * 1.25),
+    6: ($spacer * 1.5),
+    7: ($spacer * 1.75),
+    8: ($spacer * 2),
+    9: ($spacer * 2.25),
+    10: ($spacer * 2.5),
+    11: ($spacer * 2.75),
+    12: ($spacer * 3),
+    13: ($spacer * 3.25),
+    14: ($spacer * 3.5),
+    15: ($spacer * 3.75),
+    16: ($spacer * 4),
+    18: ($spacer * 4.5),
+    20: ($spacer * 5),
+    22: ($spacer * 5.5),
+    24: ($spacer * 6),
+    28: ($spacer * 7),
+    30: ($spacer * 7.5),
+    32: ($spacer * 8),
+    34: ($spacer * 8.5),
+    35: ($spacer * 8.75),
+    36: ($spacer * 9),
+    40: ($spacer * 10),
+);
+
+$sizes: (
+    150: 150%,
+);
+
+$grid-columns: 48;
+$grid-gutter-width: 20px;
+
+$input-border-radius: 0;
+$input-border-color: #efeef6;
+$input-btn-focus-width: .05rem;
+$input-btn-focus-color: $colorMain;
+$component-active-bg: $colorMain;
+$form-feedback-font-size: 90%;
+
+// 1900px instead of 1920px and 1350px instead of 1366px
+// because some browsers report width as 1905px
+// if scrollbar is visible (I'm looking at you Safari)
+$grid-breakpoints: (
+    xxs: 0,
+    xs: 400px,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1350px,
+    xxl: 1600px,
+    xxxl: 1900px
+);
+
+$container-max-widths: (
+    xs: 375px,
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1260px,
+    xxl: 1440px,
+    xxxl: 1770px + $grid-gutter-width
+);
+
+$input-font-size: .85rem;
+$label-margin-bottom: 0;

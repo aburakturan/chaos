@@ -1,0 +1,74 @@
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder { /* Firefox 18- */
+        @content;
+    }
+
+    &::-moz-placeholder {  /* Firefox 19+ */
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+}
+
+@mixin buttonColorsBlank($name, $textColor, $hoverTextColor: false, $hoverBackground: false, $borderColor: false) {
+    @if ($hoverTextColor == false) {
+        $hoverTextColor: $fontColor;
+    }
+
+    @if ($hoverBackground == false) {
+        $hoverBackground: #fff;
+    }
+
+    @if ($borderColor == false) {
+        $borderColor: #fff;
+    }
+
+    .button-#{$name} {
+
+        &--blank {
+            background: transparent;
+            border: 1px solid $borderColor;
+            color: $textColor;
+
+            &:hover, &:focus {
+                background: $hoverBackground;
+                color: $hoverTextColor;
+            }
+        }
+    }
+}
+
+@mixin buttonColorsFill($name, $bgColor, $textColor, $hoverTextColor: false, $hoverBackground: false, $borderColor: false) {
+    @if ($hoverTextColor == false) {
+        $hoverTextColor: $textColor;
+    }
+
+    @if ($hoverBackground == false) {
+        $hoverBackground: transparent;
+    }
+
+    @if ($borderColor == false) {
+        $borderColor: $bgColor;
+    }
+
+    .button-#{$name} {
+
+        &--fill {
+            border: 1px solid $borderColor;
+            background: $bgColor;
+            color: $textColor;
+
+            &:hover, &:focus {
+                border: 1px solid $borderColor;
+                color: $hoverTextColor;
+                background: $hoverBackground;
+            }
+        }
+    }
+}

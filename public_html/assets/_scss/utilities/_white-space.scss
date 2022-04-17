@@ -1,0 +1,13 @@
+$white-spaces: () !default;
+$white-spaces: map-merge(
+    (
+        nowrap: nowrap,
+    ),
+    $white-spaces
+);
+
+@each $key, $value in $white-spaces {
+    .white-space-#{$key} {
+        white-space: $value !important;
+    }
+}

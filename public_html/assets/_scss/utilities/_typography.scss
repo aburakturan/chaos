@@ -1,0 +1,49 @@
+// Thin
+.font-weight-100 {
+    font-weight: 100 !important;
+}
+
+// Extra Light
+.font-weight-200 {
+    font-weight: 200 !important;
+}
+
+// Light
+.font-weight-300 {
+    font-weight: 300 !important;
+}
+
+// Normal
+.font-weight-400 {
+    font-weight: 400 !important;
+}
+
+// Medium
+.font-weight-500 {
+    font-weight: 500 !important;
+}
+
+// Semi Bold
+.font-weight-600 {
+    font-weight: 600 !important;
+}
+
+// Bold
+.font-weight-700 {
+    font-weight: 700 !important;
+}
+
+// Extra Bold
+.font-weight-800 {
+    font-weight: 800 !important;
+}
+
+// Black
+.font-weight-900 {
+    font-weight: 900 !important;
+}
+
+// Strong tag override
+strong {
+    @extend .font-weight-700;
+}

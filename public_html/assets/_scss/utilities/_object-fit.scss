@@ -1,0 +1,14 @@
+$object-fits: () !default;
+$object-fits: map-merge(
+    (
+        none: none,
+        cover: cover,
+    ),
+    $object-fits
+);
+
+@each $key, $value in $object-fits {
+    .object-fit-#{$key} {
+        object-fit: $value !important;
+    }
+}

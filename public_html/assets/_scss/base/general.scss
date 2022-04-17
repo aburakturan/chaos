@@ -1,0 +1,47 @@
+:root {
+    --vh: 1vh;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    display: block !important;
+    font-family: $fontFamilyMain;
+}
+
+button {
+
+    &:focus {
+        outline: 0;
+        box-shadow: none;
+    }
+}
+
+.background-cover {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+label {
+    font-weight: 600;
+    color: #000;
+}
+
+// Animate
+.animate--fadeIn {
+    opacity: 0;
+}
+
+.minimum-full-height {
+    min-height: calc(var(--vh) * 100);
+}
+
+// IE Fix
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .ie-full-height {
+        height: 100vh;
+    }
+}

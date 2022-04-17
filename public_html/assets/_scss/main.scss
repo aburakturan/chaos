@@ -1,0 +1,42 @@
+// Definitions
+@import 'definitions/settings';
+@import 'definitions/mixins';
+
+// bootstrap
+@import "~bootstrap/scss/bootstrap.scss";
+
+// @fortawesome/fontawesome-free
+$fa-font-path: '/node_modules/@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/v4-shims';
+
+// Animate
+$use-fadeIn: true;
+@import "~animate-sass/_animate.scss";
+
+// Utilities
+@import 'utilities/font-size';
+@import 'utilities/line-height';
+@import 'utilities/height-width';
+@import 'utilities/max-height-width';
+@import 'utilities/min-height-width';
+@import 'utilities/object-fit';
+@import 'utilities/opacity';
+@import 'utilities/placeholder';
+@import 'utilities/typography';
+@import 'utilities/white-space';
+
+// Vendor
+// @import 'vendor/bootstrap';
+
+// Base
+@import 'base/reset';
+@import 'base/general';
+
+// Components
+@import 'components/header';
+@import 'components/button';
+@import 'components/footer';

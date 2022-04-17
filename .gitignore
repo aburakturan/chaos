@@ -1,0 +1,39 @@
+# Ignore server files
+/*
+!.gitignore
+!/private
+!/public_html
+!/README.md
+
+# Ignore Laravel files
+.env
+/private/vendor
+/private/.phpstorm.meta.php
+/private/_ide_helper.php
+/private/_ide_helper_models.php
+
+# Ignore cache files
+.idea
+.sass-cache
+dump.rdb
+
+# Ignore css and js files
+/public_html/assets/dist
+
+# Ignore uploads folder
+/public_html/uploads
+
+# Ignore node modules
+/public_html/node_modules
+
+# Ignore settings
+/private/storage/settings.json
+
+# Ignore Google webmaster verification file
+/public_html/google*.html
+
+# SSL Certificate
+/public_html/.well-known/
+
+# Ignore mix manifest file
+/public_html/mix-manifest.json

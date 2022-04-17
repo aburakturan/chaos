@@ -1,0 +1,87 @@
+<?php
+
+use App\Models\Entities\Permission;
+use App\Models\Entities\Role;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class Create$$Dummy_Model_Name_Upper$$sTable extends Migration
+{
+    public function __construct()
+    {
+        $this->permissions = [
+            'admin.$$Dummy_Model_Name_Lower$$.index' => '$$Dummy_Model_Name_Upper$$ - Page: Index',
+            'admin.$$Dummy_Model_Name_Lower$$.edit' => '$$Dummy_Model_Name_Upper$$ - Page: Edit',
+            'admin.$$Dummy_Model_Name_Lower$$.create' => '$$Dummy_Model_Name_Upper$$ - Page: Create',
+            'admin.$$Dummy_Model_Name_Lower$$.delete' => '$$Dummy_Model_Name_Upper$$ - Page: Delete',
+            'admin.$$Dummy_Model_Name_Lower$$.hard-delete' => '$$Dummy_Model_Name_Upper$$ - Page: Hard Delete',
+            'admin.$$Dummy_Model_Name_Lower$$.restore' => '$$Dummy_Model_Name_Upper$$ - Page: Restore',
+        ];
+    }
+
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('$$Dummy_Model_Name_Lower$$s', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->string('template')->nullable();
+            $table->string('image')->nullable();
+            $table->boolean('redirect_first_child')->default(0);
+
+            $table->nestedSet();
+
+            $table->nullableTimestamps();
+            $table->softDeletes();
+        });
+
+
+        // Permissions
+        $rootRole = Role::find(1);
+        $adminRole = Role::find(2);
+
+        foreach ($this->permissions as $name => $title) {
+            $permission = Permission::firstOrCreate([
+                'name' => $name,
+                'title' => $title,
+            ]);
+
+            if (!is_null($rootRole)) {
+                $rootRole->givePermissionTo($permission);
+            }
+
+            if (!is_null($adminRole)) {
+                $adminRole->givePermissionTo($permission);
+            }
+        }
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
+        Schema::dropIfExists('$$Dummy_Model_Name_Lower$$s');
+
+
+        // Permissions
+        foreach ($this->permissions as $name => $title) {
+            $permission = Permission::where('name', $name)->first();
+
+            if (!is_null($permission)) {
+                $permission->delete();
+            }
+        }
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+    }
+}

@@ -1,0 +1,23 @@
+$min-height-widths: () !default;
+$min-height-widths: map-merge(
+    (
+        'auto': auto,
+    ),
+    $min-height-widths
+);
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+        @each $key, $value in $min-height-widths {
+            .min-width#{$infix}-#{$key} {
+                min-width: $value !important;
+            }
+
+            .min-height#{$infix}-#{$key} {
+                min-height: $value !important;
+            }
+        }
+    }
+}

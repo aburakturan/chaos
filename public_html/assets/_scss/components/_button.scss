@@ -1,0 +1,17 @@
+.button {
+    transition: all .3s;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// General Buttons
+@include buttonColorsBlank('white', #fff, #000, #fff, #fff);
+@include buttonColorsFill('white', #fff, #000, #fff);
+
+@include buttonColorsBlank('black', #000, #fff, #000, #000);
+@include buttonColorsFill('black', #000, #fff, #000);
+
+@include buttonColorsBlank('main', $colorMain, #fff, $colorMain, $colorMain);
+@include buttonColorsFill('main', $colorMain, #fff, false, $colorMain);

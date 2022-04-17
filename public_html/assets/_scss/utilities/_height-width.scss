@@ -1,0 +1,25 @@
+$height-widths: () !default;
+$height-widths: map-merge(
+    (
+        'auto': auto,
+        '50': 50%,
+        '100': 100%,
+    ),
+    $height-widths
+);
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+        @each $key, $value in $height-widths {
+            .width#{$infix}-#{$key} {
+                width: $value !important;
+            }
+
+            .height#{$infix}-#{$key} {
+                height: $value !important;
+            }
+        }
+    }
+}

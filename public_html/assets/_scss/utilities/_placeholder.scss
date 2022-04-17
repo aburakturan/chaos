@@ -1,0 +1,7 @@
+@each $key, $value in $theme-colors {
+    .placeholder-#{$key} {
+        @include placeholder {
+            color: $value;
+        }
+    }
+}

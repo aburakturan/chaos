@@ -1,0 +1,4 @@
+.dataTable .group, .dataTable .group:hover td {
+    font-weight: bold;
+    background: #ededed !important;
+}
